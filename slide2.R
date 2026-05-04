@@ -85,4 +85,97 @@ a
 # LOGICAL OPERATORS
 #NEGATION
 !TRUE # The result is FALSE
+!FALSE
+TRUE & TRUE
+FALSE & TRUE
+TRUE | TRUE
+c(TRUE, FALSE) & c(TRUE, TRUE)
+c(TRUE, FALSE) && c(TRUE, TRUE)
+TRUE | TRUE 
+FALSE | TRUE
+FALSE | FALSE
+TRUE | FALSE
+TRUE || TRUE
+FALSE || TRUE
+FALSE || FALSE
+xor(TRUE, TRUE)
+xor(TRUE, FALSE)
+xor(TRUE, TRUE)
+xor(FALSE, FALSE)
+10 + 1 > 10
+234 * 76 > 938 * 43
+8 > 7 && 9 > 8
+6 < 8 && 7 > 8
+6 > 8 || 7 > 8
+a <- 10 < 4 + 8
+a
+a <- 5 + 10 < 12
+a
+m <- 100
+n <- m - 10 < 100
+p <- m > 10 + 100
+a <- n && p
+m <- 4 + 7 * 2
+n <- m < 20
+p <- m * 10 >= 200
+a <- !n || p
+x <- 11
+if (x %% 2 == 0) {
+  print("x is an even number")
+} else {
+  print("x is NOT an even number")
+}
+# If-else blocks can be nested within other if-else blocks
+x <- 11
+if (x %% 2 == 0) {
+  print("x is an even number")
+} else if (x %% 3 == 0) {
+  print("x is divisible by 3")
+} else if (x %% 5 == 0) {
+  print("x is divisible by 5")
+} else {
+  print("not divisible by 2, 3, 5")
+}
+# If-else blocks can be nested within other if-else blocks
+x <- 12
+if (x %% 2 == 0) {
+  if (x %% 3 == 0) {
+    print("x is divisible by 6")
+  } else {
+    print("x is not divisible by 3")
+  }
+  print("x is an even number")
+} else {
+  print("x is an odd number")
+  if (x %% 3 == 0) {
+    print("x is divisible by 3")
+  } else {
+    print("x is not divisible by 3")
+  }
+}
+
+# Task: In the UK, you can start driving a car when you're 17. Give the value held in age is the age of the individual,
+# write a script that prints “may drive” or “may NOT drive” depending on age.
+# age <- 30
+
+age <- 30
+if (age >= 17){
+  print("May drive")
+} else{
+  print("May not drive")
+}
+# Task: Children aged from 13 to 19 are referred to as teenagers. Give the value held in age is the age of the
+# individual, write a script that prints “teenager” or “not teenager” depending on age.
+# age <- 20
+
+age <- 20
+if (age >= 13 & age <= 19 ){
+  print("teenager")
+} else{
+  print("not teenager")
+}
+# Use & when all conditions must be true (AND).
+# Use | when at least one condition must be true (OR).
+# Foe example; age >= 13 & age <= 19 → both must hold → “teenager”
+#              age < 13 | age > 19 → either holds → “not teenager
 
