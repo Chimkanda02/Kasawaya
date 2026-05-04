@@ -177,5 +177,45 @@ if (age >= 13 & age <= 19 ){
 # Use & when all conditions must be true (AND).
 # Use | when at least one condition must be true (OR).
 # Foe example; age >= 13 & age <= 19 → both must hold → “teenager”
-#              age < 13 | age > 19 → either holds → “not teenager
+#              age < 13 | age > 19 → either holds → “not teenager"
+# if-else blocks can be nested
+# Task: Put each print statement on the flow chart
+age <- 20
+if (age >= 13) {
+  if (age <= 19) {
+    print("age is teenager")
+  } else {
+    print("age is not teenager")
+  }
+} else {
+  print("age is not teenager")
+}
+# The first print("age is not teenager") executes when age >= 13 is false (age < 13).
+# The second print("age is not teenager") executes when age >= 13 is true but age <= 19 is false (age > 19).
+# The print("age is teenager") executes only when both conditions are true (13 ≤ age ≤ 19).
+# For age <- 20, the path taken is:
+# Start → age = 20 → age >= 13? Yes → age <= 19? No → print("age is not teenager") → End.
 
+# if-else blocks can be nested
+# Task: Add the highlighted line to the flow chart
+age <- 20
+if (age >= 13) {
+  print("older than 13")
+  if (age <= 19) {
+    print("age is teenager")
+  } else {
+    print("age is not teenager")
+  }
+} else {
+  print("age is not teenager")
+}
+
+# Exercise: Leap Year
+# Task: A leap year is a year that is a multiple of 4, except for years evenly divisible by 100 but not by 400. 
+# (e.g.1996, 2000, 2020, 2024 are leap years; 1999, 1900, 2021 are not leap year
+year <- 2000
+if (year %% 4 == 0 & (year %% 100 !=0 | year %% 400 == 0)){
+  print("leap year") # year %% 4 == 0 → divisible by 4 (required), & → AND (both sides must be true), Inside parentheses: year %% 100 != 0 | year %% 400 == 0 → either not divisible by 100 or divisible by 400 (this excludes years like 1900 but includes 2000)
+} else { # "Divisible by 4 AND (not divisible by 100 OR divisible by 400)" — exactly the official leap year rule.
+  print("not leap year")
+}
