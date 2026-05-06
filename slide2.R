@@ -219,3 +219,69 @@ if (year %% 4 == 0 & (year %% 100 !=0 | year %% 400 == 0)){
 } else { # "Divisible by 4 AND (not divisible by 100 OR divisible by 400)" — exactly the official leap year rule.
   print("not leap year")
 }
+# Task: Given the script, what is the output for each x value
+x <- 10
+if (x > 10) {
+  print("a")
+  if (x %% 3 == 0) {
+    print("b")
+  } else {
+    print("c")
+  }
+} else {
+  x <- x * x
+  if (x > 50) {
+    print("d")
+  }
+  if (x < 30 ) {
+    print("e")
+  } else {
+    print("f")
+  }
+}
+# Task: Print all integers with values between x and 10
+x <- 2
+while (x <= 10) {
+  print(x)
+  x <- x + 1 #increment by 1
+}
+#Task: Print the next integer that's greater than x which is divisible by 6.
+x <- 8 # note below, != 0 checks whether that remainder is not equal to zero
+while (x %% 6 != 0) { # %% is the modulo operator – it returns the remainder after dividing x by 6
+     x <- x + 1
+}
+print(x)
+
+x <- 2
+y <- 0
+while (x < 10) { # the loop keeps running as long as x is less than 10
+  x <- x + 3  # increase x by 3
+  y <- y + 1  # increase x by 1
+}
+# Detailed explanation of how the while loop is iterated
+#Iteration	  Check x < 10	   Before body	  After x <- x+3	   After y <- y+1
+#Start          	–	           x = 2,y = 0	       –	              –
+#1	         2 < 10 → TRUE	   x = 2            	x = 5	          y = 1
+#2	         5 < 10 → TRUE	   x = 5	            x = 8	          y = 2
+#3	         8 < 10 → TRUE	   x = 8	            x = 11	        y = 3
+#4	         11 < 10 → FALSE	   –	                –	              –
+# This shows that the value of x=11 and y=3 at the end
+
+# using break below
+x <- 2
+while (x <= 10) {
+  print(x)
+  if (x == 6) {
+    break # using break will guide the loop to stop the iterations when a value of 6 is reached
+  } 
+  x<- x + 1
+}
+# using next
+x <- 2
+while (x <= 10) {
+  x <- x + 1
+  if (x == 6) {
+    next
+  }
+  print(x)
+}
