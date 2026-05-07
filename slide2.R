@@ -285,3 +285,100 @@ while (x <= 10) {
   }
   print(x)
 }
+
+# Task: Print the next integer that's greater than x which is divisible by 6.
+x_start <- 12
+x <- x_start #This code starts with x = 12
+while (x < x_start + 5) { # The while loop runs while x < 17
+  if (x %% 6 == 0) { #  Inside, if x is divisible by 6 (x %% 6 == 0), it breaks immediately
+    break # Since 12 is divisible by 6, the loop stops on the first iteration without incrementing x
+  } x<- x + 1
+}
+print(x)
+
+x_start <- 12
+x <- x_start - 1          # This code starts with x = 11 (one less than x_start)
+while (x < x_start + 5) {
+  x <- x + 1
+  if (x %% 6 != 0) {      #If x is not divisible by 6 (%% 6 != 0), next skips to the next loop iteration (no print)
+    next
+  }
+  print(x)            #If x is divisible by 6, it prints x.
+}            # The loop increments x from 12 up to 16. Only x = 12 is divisible by 6, so it prints 12 once
+
+# for loop example
+# for loop works well with data containers. Vector is the most basic type of 
+# data containers in R.
+# `x:y` generates a vector containing a sequence of numerical
+# values 1-spaced between x and y.
+# `vec[i]`, with vec being a vector and i being an integer, extracts
+# the ith value from vec
+
+# USING FOR LOOP
+x <- 11
+y <- 15
+vec <- x:y # Creates vec as the sequence 11, 12, 13, 14, 15 using x:y
+vec
+for (v in vec) {
+  print(v)
+}
+
+# USING WHILE LOOP
+x <- 11
+y <- 15
+vec <- x:y
+vec
+i <- 1 # This will be used as an index into vec
+while (i <= length(vec)) { # Starts a while loop that continues as long as i is less than or equal to the length of vec (which is 5)
+  print(vec[i])
+  i <- i + 1
+}
+vec <- 11:15 # The code creates a vector vec containing the integers 11 through 15.
+for (v in vec) {# The first for loop iterates over each element, adding 1 to the loop variable v, but this does not modify the original vector vec
+  v <- v + 1
+}
+for (v in vec) {
+  print(v)
+}
+
+# using seq
+vec <- 11:15
+for (i in seq_along(vec)) {
+  vec[i] <- vec[i] + 1
+}
+for (v in vec) {
+  print(v)
+}
+# Task 1: Print all integers that are divisible by 3 between 10 and 20.
+vec <- 10:20 # This code creates a vector vec containing the integers from 10 to 20
+for (i in vec){# It then loops through each value i in vec.
+  if (i %% 3 ==0){ # For each i, it checks if i is divisible by 3 (i.e., i %% 3 == 0).
+    print(i)
+  }
+}
+
+#Task 2: Find all occurrences of 5 in `vec` and replace them with 10 
+vec <- c(3, 5, 6, 7, 5, 9, 4)
+for (i in seq_along(vec)) {
+  if (vec[i] == 5) {
+    vec[i] <- 10
+  }
+}
+print(vec)
+
+# Task: Read the following script and write down what the output should be
+vec1 <- 1:3
+vec2 <- c(10, 20, 30)
+for (v1 in vec1) {
+  for (v2 in vec2) {
+    print(v1 + v2)
+  }
+}
+
+vec1 <- c(TRUE, FALSE, FALSE, TRUE)
+vec2 <- c(10, 20, 30, 40)
+for (i in seq_along(vec1)) {# The loop iterates over indices 1 to 4 using seq_along(vec1).
+  if (vec1[i]) { # When i = 1, vec1[1] is TRUE → prints vec2[1] = 10
+    print(vec2[i]) # When i = 4, vec1[4] is TRUE → prints vec2[4] = 40
+  } # When i = 2, vec1[2] is FALSE → nothing printed
+} # When i = 3, vec1[3] is FALSE → nothing printed
