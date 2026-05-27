@@ -213,6 +213,92 @@ m[2, ]  # Second row, all columns → vector c(12, 16, 20)
 m[m > 5]  # All elements are >5 (11–22), so returns the entire vector (column‑major):c(11,12,13,14,15,16,17,18,19,20,21,22)
 m[2, c("col1", "col3")] # Row 2, columns named "col1" and "col3" → vector c(12, 20) (names preserved)
 
+# Extract from lists
+l <- list(1:5, letters[1:3], c(1.4, 3.1, 6.4, 6.2))
+l
+l[1]
+l[1][2] # l[1] extracts the first component as a list of length 1.The result is [1] 1 2 3 4 5. l[1] is a list of length 1.[2] on that list asks for the second element of this list, te result is NULL. 
+l[1, 2] # It sees the comma inside the square brackets and expects two indices (row, column). But l has no dim attribute (it is not a matrix, array, or data frame). R returns an error.
+l[-1]
+l[2:3]
+identical(l[-1], l[2:3])
+l[[3]] # l[[3]] extracts the third component of the list as its original object, not as a sublist.
+l[[3:4]] # First, extract the 3rd component of l → the numeric vector c(1.4, 3.1, 6.4, 6.2).Then, from that result, extract the 4th element.
+l[3:4] # l[3:4] extracts the 3rd and 4th components of l as a sublist (single brackets [ ] always return a list). l[4] does not exist → returns a list of length 1 containing NULL.
+
+# Extract from data.frame
+# with [] and [[]]
+df <- data.frame(x = 1:10, y = letters[1:10])
+df
+x <- df[1]
+x <- df[[1]]
+x <- df[, 1]
+x <- df[1, ]
+x <- df[1, 2]
+x <- df[, 1:2]
+x <- df[3:5, ]
+x <- df[3:5, 2]
+x <- df[, c("y", "x", "x")] # c("y", "x", "x") selects columns by name: first y, then x, then x again. Subsets df using [rows, columns].
+x <- df[, c("x", "x")] # df[, c("x", "x")] selects all rows (empty before comma) and two columns, both named "x". The result is a data frame with two columns. Column names will be "x" and "x.1"
+x <- df[, c(2, 1, 1)] # c(2, 1, 1) selects columns by position:   2 → y , 1 → x, 1 → x again (second copy) x
+
+df["y"] # extracts the column named "y" from the data frame df, but returns it as a data frame
+df[["y"]] # gives you the y column as a character vector. 
+df[c(TRUE, FALSE), ] # selects rows from the data frame based on a logical vector that is recycled to match the number of rows. Result: rows 1, 3, 5, 7, 9 (all odd‑numbered rows) and all columns (because the space after the comma means no column subsetting).
+# You get odd‑numbered rows because R recycles the logical vector c(TRUE, FALSE) starting from the first row
+df[, c(TRUE, FALSE)] # TRUE selects column1 (x), FALSE skips column2 (y).The result is a data frame with one column (x), all rows kept.
+df[c(TRUE, FALSE)] # the same result but this time the Result is a data frame with one column (x), all rows kept
+df[df[, "x"] > 5, ] # selects the result starting from x greater than 5
+df[df[["x"]] > 5, ] # same
+
+# Extract from data.frame
+# with $
+df <- data.frame(age = 1:10, initial = letters[1:10]) 
+df["age"]
+df[["age"]]
+df$age # $ is used to access a column by name directly.Returns the content (the vector), not a data frame (unlike df["age"] which returns a one‑column data frame).
+df$"age" # does exactly the same thing as df$age — it extracts the column named "age" from the data frame as a vector.
+df$`age`
+df$a  # df$a looks for a column name that starts with "a".The only match is "age", so df$a returns the age column as a vector: 1 2 3 4 5 6 7 8 9 10
+df$"a"
+df$'a'
+df$`a`
+df[["a"]] # df[["a"]] returns NULL because there is no column named exactly "a" in the data frame.
+
+# difference between $ and [[ ]]
+df2 <- data.frame(age = 1:10, account = letters[1:10])
+wanted_col <- "age"
+df2$a # returns NULL coz there are two variables that starts with "a"
+df2$ag # returns the contents of the vector age since the onl variable that has letters ag is age
+df2$ac
+df2[[wanted_col]] # returns integer vector 1:10
+df2$wanted_col # df2$wanted_col returns NULL because "wanted_col" is not a column name in df2
+df2$age
+
+# Task: Given the definition of df2 above,work out the followings:
+df <- data.frame(age = 1:10, account = letters[1:10])
+df[df[3, 1], 2] # df[3, 1] extracts the value at row 3, column 1 → 3 (the age). This value (3) is used as the row index, so the expression becomes df[3, 2], which returns the value at row 3, column 2 → "c"
+df[df[[1]] %% 2 == 0, 2] # selects rows from df where the first column (age) is even, then returns the corresponding values from the second column (account)
+length(df) * nrow(df) # length(df) = number of columns in the data frame = 2. nrow(df) = number of rows = 10. Result = 2 * 10 = 20
+df[["x"]][-2][2] # df[["x"]] attempts to extract column "x" — it returns NULL (no such column). NULL[-2] subsetting with a negative index on NULL still yields NULL. NULL[2] also yields NULL
+df[df[, "y"] == "d", "x"] # df[, "y"] extracts column "y" as a vector. == "d" creates a logical vector indicating rows where column "y" equals the string "d".This logical vector is used to select rows from df. , "x" then selects column "x" from those filtered rows.
+df$y[2:5][3] #  If column "y" existed, it would take the 2nd through 5th elements of that column, then select the 3rd element from that subset (which would be the overall 4th element of the original column). It returns NULL coz y does not exist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
