@@ -55,7 +55,10 @@ library(deSolve)
 out <- ode(y = state, times = times, func = Lorenz, parms = parameters)
 head(out)
 
-
+# Plotting results
+# Finally, the model output is plotted. We use the plot method designed for objects of class deSolve, which will neatly arrange the figures in two rows and two columns; before plotting,
+# the size of the outer upper margin (the third margin) is increased (oma), such as to allow writing a figure heading (mtext). First all model variables are plotted versus time, and
+# finally Z versus X:
 
 
 
